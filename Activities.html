@@ -36,10 +36,18 @@
         <div class="k-w-300">
             <label>Teaching</label>
             <input id="timedurationpickerTeaching" title="timedurationpicker" />
+            <button id="get-value">Get Value Teaching</button>
         </div>
     </div>
     <script>
         $(document).ready(function () {
+
+            $("#get-value").kendoButton({
+            click: function() { 
+                    kendo.alert(teaching.value() + " milliseconds");
+                }
+            });
+
             $("#timedurationpickerBreak").kendoTimeDurationPicker({
                 columns: [{ name: "hours", format: "## h " }, { name: "minutes", format: " ## m" }],
                 shortcuts: [
@@ -85,7 +93,7 @@
                 ],
                 separator: ":"
             });
-            $("#timedurationpickerTeaching").kendoTimeDurationPicker({
+            var teaching = $("#timedurationpickerTeaching").kendoTimeDurationPicker({
                 columns: [{ name: "hours", format: "## h " }, { name: "minutes", format: " ## m" }],
                 shortcuts: [
                     { text: "30min", value: 1800000 },
@@ -93,7 +101,7 @@
                     { text: "2 hours", value: 7200000 }
                 ],
                 separator: ":"
-            });
+            }).data("kendoTimeDurationPicker");
         });
     </script>
 
